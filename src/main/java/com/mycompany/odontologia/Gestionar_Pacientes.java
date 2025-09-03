@@ -126,6 +126,48 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
      
      }
      
+     public void actualizar(){
+     try{
+     int fila = jtregistro.getSelectedRow(); 
+     if(fila== -1){
+       JOptionPane.showMessageDialog(null,"Seleccione una fila");
+      }else {
+             int id = Integer.parseInt(jtregistro.getValueAt(fila,0).toString()); // 123
+            String nombres = txtnombres.getText(); // eliza
+            String apellidos = txtapellidos.getText();  // jhdbd
+            
+            //obtener la fecha
+             java.util.Date fechaseleccionada = jdfecha.getDate();
+             java.sql.Date fechanacimiento = new java.sql.Date(fechaseleccionada.getTime());
+             
+             //obtener el sexo 
+             String sexo = rbmasculino.isSelected()? "M" : "F";
+             
+             String sql = "update pacientes SET PacNombres=?,PacApellidos=?,PacFechaNacimiento=?,PacSexo=? WHERE PacIdentificacion=?";
+              Connection conet= co.getConnection();
+              PreparedStatement pst = conet.prepareStatement(sql);
+              pst.setString(1,nombres);
+              pst.setString(2, apellidos);
+              pst.setDate(3, fechanacimiento);
+              pst.setString(4, sexo);
+              pst.setInt(5, id);
+              int filasactualizadas = pst.executeUpdate();
+              if(filasactualizadas > 0){
+                JOptionPane.showMessageDialog(null,"Se ha actualizado el registro");
+                limpiarcampos();
+                limpiar();
+                consultar();
+              }else{
+              JOptionPane.showMessageDialog(null,"No Se ha actualizado el registro");
+              }
+              
+              }
+     }catch(Exception e){
+         System.err.println("el error es: "+e);
+     }
+     
+     }
+     
 
         
      
@@ -441,7 +483,7 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
     }//GEN-LAST:event_jtregistroMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
+      actualizar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
