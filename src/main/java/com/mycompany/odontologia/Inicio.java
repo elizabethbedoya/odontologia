@@ -6,7 +6,7 @@ package com.mycompany.odontologia;
 
 
 
-/**
+/*
  *
  * @author ADMIN
  */

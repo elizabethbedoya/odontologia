@@ -132,7 +132,7 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
      if(fila== -1){
        JOptionPane.showMessageDialog(null,"Seleccione una fila");
       }else {
-             int id = Integer.parseInt(jtregistro.getValueAt(fila,0).toString()); // 123
+             int id = Integer.parseInt(jtregistro.getValueAt(fila,0).toString()); //
             String nombres = txtnombres.getText(); // eliza
             String apellidos = txtapellidos.getText();  // jhdbd
             
