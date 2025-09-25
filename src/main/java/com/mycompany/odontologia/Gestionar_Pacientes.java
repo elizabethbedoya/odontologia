@@ -126,7 +126,7 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
      
      }
      
-     public void actualizar(){
+     public void actualizar(){ //metodo actualizar
      try{
      int fila = jtregistro.getSelectedRow(); 
      if(fila== -1){
@@ -153,7 +153,7 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
               pst.setInt(5, id);
               int filasactualizadas = pst.executeUpdate();
               if(filasactualizadas > 0){
-                JOptionPane.showMessageDialog(null,"Se ha actualizado el registro");
+                JOptionPane.showMessageDialog(null,"Se ha actualizado el registro ");
                 limpiarcampos();
                 limpiar();
                 consultar();
@@ -164,8 +164,7 @@ public class Gestionar_Pacientes extends javax.swing.JFrame {
               }
      }catch(Exception e){
          System.err.println("el error es: "+e);
-     }
-     
+     } 
      }
      
 
